@@ -20,7 +20,7 @@ camel:
       
         dataSource:                
           testDS:
-            URL: jdbc:postgresql://localhost:5432/quartz_schedule?user=postgres&password=${dbpassword}
+            URL: jdbc:postgresql://localhost:5432/quartz_schedule?user=postgres&password=b@tR1ver
             driver: org.postgresql.Driver
             provider: hikaricp
                 
