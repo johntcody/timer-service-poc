@@ -25,3 +25,4 @@ target/surefire-reports/gov.texas.trs.intgr.timer.service.tests.TimerServiceRout
 target/surefire-reports/TEST-gov.texas.trs.intgr.timer.service.tests.TimerServiceRouteTests.xml
 target/test-classes/gov/texas/trs/intgr/timer/service/tests/TimerServiceRouteTests.class
 target/timer-service-0.0.1-SNAPSHOT.jar
+/target/
