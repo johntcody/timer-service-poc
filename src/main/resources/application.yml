@@ -6,9 +6,13 @@ camel:
   springboot:
     main-run-controller: true    
   
-#  component:
+  component:
+    quartz:
+      scheduler-name: clusteredScheduler
+
 spring:
     quartz:
+      scheduler-name: clusteredScheduler
       job-store-type: jdbc #Database Mode
       jdbc:
         initialize-schema: NEVER #Do not initialize table structure
@@ -22,7 +26,7 @@ spring:
       
             dataSource:                
               quartzDS:
-                URL: jdbc:postgresql://localhost:5432/quartz_schedule?user=postgres&password=b@tR1ver
+                URL: jdbc:postgresql://localhost:5432/quartz_schedule?user=postgres&password=dbpassword
                 driver: org.postgresql.Driver
                 provider: hikaricp
                 
