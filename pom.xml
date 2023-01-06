@@ -38,6 +38,12 @@
 			<groupId>org.apache.camel.springboot</groupId>
 			<artifactId>camel-quartz-starter</artifactId>
 		</dependency>
+		
+		<!-- Spring Boot starters -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-quartz</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>org.apache.camel.springboot</groupId>
