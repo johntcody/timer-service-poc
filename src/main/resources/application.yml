@@ -11,33 +11,34 @@ camel:
       job-store-type: jdbc #Database Mode
       jdbc:
         initialize-schema: NEVER #Do not initialize table structure
-      scheduler:
-        instanceId: AUTO #Default hostname and timestamp generate instance ID, which can be any string, but must be the only corresponding qrtz_scheduler_state INSTANCE_NAME field for all dispatchers
-        instanceName: clusteredScheduler #quartzScheduler
-        skipUpdateCheck: true
-        
-        
+      properties:
+        org:
+          quartz:
+            scheduler:
+              instanceId: AUTO #Default hostname and timestamp generate instance ID, which can be any string, but must be the only corresponding qrtz_scheduler_state INSTANCE_NAME field for all dispatchers
+              instanceName: clusteredScheduler #quartzScheduler
+              skipUpdateCheck: true     
       
-        dataSource:                
-          testDS:
-            URL: jdbc:postgresql://localhost:5432/quartz_schedule?user=postgres&password=b@tR1ver
-            driver: org.postgresql.Driver
-            provider: hikaricp
+            dataSource:                
+              quartzDS:
+                URL: jdbc:postgresql://localhost:5432/quartz_schedule?user=postgres&password=dbpassword
+                driver: org.postgresql.Driver
+                provider: hikaricp
                 
-        jobStore:
-          dataSource: testDS
-          class: org.quartz.impl.jdbcjobstore.JobStoreTX #Persistence Configuration
-          driverDelegateClass: org.quartz.impl.jdbcjobstore.PostgreSQLDelegate #We only make database-specific proxies for databases
-          useProperties: false #Indicates that JDBC JobStore stores all values in JobDataMaps as strings, so more complex objects can be stored as name-value pairs rather than serialized in BLOB columns.In the long run, this is safer because you avoid serializing non-String classes to BLOB class versions.
-          tablePrefix: QRTZ_  #Database Table Prefix
-          misfireThreshold: 60000 #The number of milliseconds the dispatcher will "tolerate" a Trigger to pass its next startup time before being considered a "fire".The default value (if you do not enter this property in the configuration) is 60000 (60 seconds).
-          clusterCheckinInterval: 5000 #Set the frequency (in milliseconds) of this instance'checkin'* with other instances of the cluster.Affects the speed of detecting failed instances.
-          isClustered: true #Turn on Clustering
+            jobStore:
+              dataSource: quartzDS
+              class: org.quartz.impl.jdbcjobstore.JobStoreTX #Persistence Configuration
+              driverDelegateClass: org.quartz.impl.jdbcjobstore.PostgreSQLDelegate #We only make database-specific proxies for databases
+              useProperties: false #Indicates that JDBC JobStore stores all values in JobDataMaps as strings, so more complex objects can be stored as name-value pairs rather than serialized in BLOB columns.In the long run, this is safer because you avoid serializing non-String classes to BLOB class versions.
+              tablePrefix: qrtz_  #Database Table Prefix
+              misfireThreshold: 60000 #The number of milliseconds the dispatcher will "tolerate" a Trigger to pass its next startup time before being considered a "fire".The default value (if you do not enter this property in the configuration) is 60000 (60 seconds).
+              clusterCheckinInterval: 5000 #Set the frequency (in milliseconds) of this instance'checkin'* with other instances of the cluster.Affects the speed of detecting failed instances.
+              isClustered: true #Turn on Clustering
    
-        threadPool: #Connection Pool
-          class: org.quartz.simpl.SimpleThreadPool
-          threadCount: 10
-          threadPriority: 5
-          threadsInheritContextClassLoaderOfInitializingThread: true
+            threadPool: #Connection Pool
+              class: org.quartz.simpl.SimpleThreadPool
+              threadCount: 10
+              threadPriority: 5
+              threadsInheritContextClassLoaderOfInitializingThread: true
          
                                  
