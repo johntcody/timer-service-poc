@@ -4,6 +4,7 @@
 
 camel:
   springboot:
+    name: timer-service
     main-run-controller: true    
   
   component:
@@ -26,7 +27,7 @@ spring:
       
             dataSource:                
               quartzDS:
-                URL: jdbc:postgresql://localhost:5432/quartz_schedule?user=postgres&password=dbpassword
+                URL: ${jdbc.url}
                 driver: org.postgresql.Driver
                 provider: hikaricp
                 
